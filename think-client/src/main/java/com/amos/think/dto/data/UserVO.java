@@ -2,8 +2,6 @@ package com.amos.think.dto.data;
 
 import lombok.Data;
 
-import java.time.LocalDate;
-
 /**
  * DESCRIPTION: User VO
  *
@@ -40,10 +38,10 @@ public class UserVO {
     /**
      * 生日
      */
-    private LocalDate birthday;
+    private String birthday;
     /**
      * 描述
      */
-    private String description;
+    private String memo;
 
 }

@@ -25,7 +25,7 @@ public class UserRegisterCmdExe {
 	
 	public Response execute(UserRegisterCmd cmd) {
 		UserRegisterCO userRegister = cmd.getUserRegister();
-		System.out.println("-->UserRegisterCmdExe userRegister:" + userRegister.getUsername() + "|" + userRegister.getPassword());
+		System.out.println("-->UserRegisterCmdExe userRegister:" + userRegister.getUsername() + "|" + userRegister.getPhoneNo());
 
 		UserValidator.checkUserRegister(userRegister);
 
@@ -34,7 +34,7 @@ public class UserRegisterCmdExe {
 			return Response.buildFailure(ErrorCode.B_USER_usernameRepeat.getErrCode(),
 				ErrorCode.B_USER_usernameRepeat.getErrDesc());
 		}
-
+		System.out.println("--> UserConvertor " +UserConvertor.toEntity(userRegister).getPhoneNo() + "|" + UserConvertor.toEntity(userRegister).getMemo());
 		userGateway.save(UserConvertor.toEntity(userRegister));
 
 		return Response.buildSuccess();

@@ -25,15 +25,6 @@ import java.util.UUID;
 
 /**
  * DESCRIPTION: UserServiceTest
- * 
- CREATE TABLE `SYS_USER` (
-  `ID` int(6) NOT NULL AUTO_INCREMENT,
-  `USERNAME` varchar(100) DEFAULT NULL,
-  `PASSWORD` varchar(100) DEFAULT NULL,
-  `ADDRESS` varchar(100) DEFAULT NULL,
-  `MEMO` varchar(100) DEFAULT NULL,
-  PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='系统用户'
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -62,8 +53,8 @@ public class UserServiceTest {
         registerCO.setPassword(password);
         registerCO.setPhoneNo("189****8861");
         registerCO.setGender(1);
-        registerCO.setBirthday(LocalDate.of(1996, 6, 26));
-        registerCO.setDescription("https://amos.wang/");
+        registerCO.setBirthday("");
+        registerCO.setMemo("https://amos.wang/");
 
         registerCmd.setUserRegister(registerCO);
 
@@ -122,8 +113,8 @@ public class UserServiceTest {
         userModifyCO.setUsername(username);
         userModifyCO.setPhoneNo("189----8861");
         userModifyCO.setGender(0);
-        userModifyCO.setBirthday(LocalDate.of(1996, 5, 11));
-        userModifyCO.setDescription("https://github.com/AmosWang0626");
+        userModifyCO.setBirthday("");
+        userModifyCO.setMemo("https://amos.wang/");
 
         userModify.setUserModify(userModifyCO);
 

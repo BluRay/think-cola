@@ -2,8 +2,6 @@ package com.amos.think.domain.user.model;
 
 import lombok.Data;
 
-import java.time.LocalDate;
-
 /**
  * DESCRIPTION: User Domain
  *
@@ -37,7 +35,7 @@ public class UserEntity {
 
     private Integer gender;
 
-    private LocalDate birthday;
+    private String birthday;
 
-    private String description;
+    private String memo;
 }
