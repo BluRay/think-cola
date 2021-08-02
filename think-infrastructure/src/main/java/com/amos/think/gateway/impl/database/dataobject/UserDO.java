@@ -15,34 +15,33 @@ import javax.persistence.*;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Entity
-@Table(name = "org_user", indexes = {
-        @Index(columnList = "username")
-})
+@Table(name = "org_user", indexes = {@Index(columnList = "username")})
 public class UserDO extends BaseDO {
 
-    /**
-     * 用户名
-     */
-    private String username;
-    /**
-     * 密码
-     */
-    private String password;
-    /**
-     * 密码盐
-     */
-    private String salt;
+	/**
+	 * 用户名
+	 */
+	private String username;
+	/**
+	 * 密码
+	 */
+	private String password;
+	/**
+	 * 密码盐
+	 */
+	private String salt;
 
-    /**
-     * 姓名（较常用，故放在用户主表）
-     */
-    private String name;
+	/**
+	 * 姓名（较常用，故放在用户主表）
+	 */
+	private String name;
 
-    /**
-     * 附加信息
-     */
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "info_id")
-    private UserInfoDO userInfoDO;
+	/**
+	 * 附加信息
+
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "info_id")
+	private UserInfoDO userInfoDO;     
+	*/
 
 }
