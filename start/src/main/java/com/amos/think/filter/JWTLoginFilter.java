@@ -98,7 +98,7 @@ public class JWTLoginFilter extends UsernamePasswordAuthenticationFilter {
 		SecurityContextHolder.clearContext();
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("application/json");
-		response.getWriter().println(JSON.parse("{\"code\":-1,\"msg\":\"登录失败\"}"));
+		response.getWriter().println(JSON.parse("{\"code\":-10,\"msg\":\"登录失败\"}"));
 		response.getWriter().flush();
 	}
 

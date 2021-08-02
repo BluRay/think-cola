@@ -2,7 +2,6 @@ package com.amos.think.security;
 
 import com.amos.think.filter.JWTAuthenticationFilter;
 import com.amos.think.filter.JWTLoginFilter;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -24,69 +23,59 @@ import org.springframework.security.crypto.password.PasswordEncoder;
  */
 @Configuration
 @EnableWebSecurity
-//@EnableGlobalMethodSecurity(prePostEnabled = true)
 @EnableGlobalMethodSecurity(securedEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    /**
-     * 需要放行的URL
-     */
-    private static final String[] AUTH_WHITELIST = {
-            // -- register url
-            "/users/signup",
-            "/users/logout",
-            "/user/hello",
-            "/h2/*"
-            // other public endpoints of your API may be appended to this array
-    };
+	/**
+	 * 需要放行的URL
+	 */
+	private static final String[] AUTH_WHITELIST = {
+		// -- register url
+		"/user/register",
+		"/user/logout",
+		"/user/hello",
+		"/h2/*"
+		// other public endpoints of your API may be appended to this array
+	};
 
-    @Autowired
-    private UserDetailsService userDetailsService;
+	@Autowired
+	private UserDetailsService userDetailsService;
 
-    @Autowired
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-      return new BCryptPasswordEncoder();
-    }
+	@Autowired
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
+	@Bean
+	public PasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
 
-    /*@Autowired
-    private CustomAccessDeniedHandler customAccessDeniedHandler;
-
-    @Autowired
-    private CustomLogoutSuccessHandler customLogoutSuccessHandler;
-
-    @Autowired
-    private CustomAuthenticationSuccessHandler customAuthenticationSuccessHandler;*/
-
-    // 设置 HTTP 验证规则
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        LogoutConfigurer<HttpSecurity> httpSecurityLogoutConfigurer = http.cors().and().csrf().disable()
-          .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-          .authorizeRequests()
-          .antMatchers(AUTH_WHITELIST).permitAll()
-          .anyRequest().authenticated()  // 所有请求需要身份认证
-          .and()
-          .headers().frameOptions().sameOrigin().and()
-          .exceptionHandling()
-          .and()
+	// 设置 HTTP 验证规则
+	@Override
+	protected void configure(HttpSecurity http) throws Exception {
+		LogoutConfigurer<HttpSecurity> httpSecurityLogoutConfigurer = http.cors().and().csrf().disable()
+		.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
+		.authorizeRequests()
+		.antMatchers(AUTH_WHITELIST).permitAll()
+		.anyRequest().authenticated()  // 所有请求需要身份认证
+		.and()
+		.headers().frameOptions().sameOrigin().and()
+		.exceptionHandling()
+		.and()
 //        .exceptionHandling().accessDeniedHandler(customAccessDeniedHandler) // 自定义访问失败处理器
 //        .and()
-          .addFilter(new JWTLoginFilter(authenticationManager()))
-          .addFilter(new JWTAuthenticationFilter(authenticationManager()))
-          //.formLogin().successHandler(successHandler)
-          .logout() // 默认注销行为为logout，可以通过下面的方式来修改
-          .logoutUrl("/user/logout")
-          .logoutSuccessUrl("/user/hello")// 设置注销成功后跳转页面，默认是跳转到登录页面;
+		.addFilter(new JWTLoginFilter(authenticationManager()))
+		.addFilter(new JWTAuthenticationFilter(authenticationManager()))
+		//.formLogin().successHandler(successHandler)
+		.logout() // 默认注销行为为logout，可以通过下面的方式来修改
+		.logoutUrl("/user/logout")
+		.logoutSuccessUrl("/user/hello")// 设置注销成功后跳转页面，默认是跳转到登录页面;
 //         .logoutSuccessHandler(customLogoutSuccessHandler)
-          .permitAll();
-    }
+		.permitAll();
+	}
 
-    // 该方法是登录的时候会进入
-    @Override
-    public void configure(AuthenticationManagerBuilder auth) throws Exception {
-        // 使用自定义身份验证组件
-        auth.authenticationProvider(new CustomAuthenticationProvider(userDetailsService, bCryptPasswordEncoder));
-    }
+	// 该方法是登录的时候会进入
+	@Override
+	public void configure(AuthenticationManagerBuilder auth) throws Exception {
+		// 使用自定义身份验证组件
+		auth.authenticationProvider(new CustomAuthenticationProvider(userDetailsService, bCryptPasswordEncoder));
+	}
 }

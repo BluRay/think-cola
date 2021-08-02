@@ -8,10 +8,8 @@ import com.amos.think.dto.UserRegisterCmd;
 import com.amos.think.dto.clientobject.UserRegisterCO;
 import com.amos.think.dto.query.UserLoginQuery;
 import org.springframework.web.bind.annotation.*;
-
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.crypto.digest.DigestUtil;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -22,6 +20,16 @@ import javax.annotation.Resource;
 @RestController
 @RequestMapping("user")
 public class UserController {
+  /**
+  CREATE TABLE `SYS_USER` (
+  `ID` int(6) NOT NULL AUTO_INCREMENT,
+  `USERNAME` varchar(100) DEFAULT NULL,
+  `PASSWORD` varchar(100) DEFAULT NULL,
+  `ADDRESS` varchar(100) DEFAULT NULL,
+  `MEMO` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`ID`)
+  ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='系统用户'
+   */
 
   @Resource
   private IUserService userService;
@@ -38,7 +46,6 @@ public class UserController {
   public Response register(@RequestBody UserRegisterCO userRegister) {
     UserRegisterCmd userRegisterCmd = new UserRegisterCmd();
     userRegisterCmd.setUserRegister(userRegister);
-
     return userService.register(userRegisterCmd);
   }
 
