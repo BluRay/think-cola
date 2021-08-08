@@ -33,9 +33,7 @@
 	</select>
 
 	<select id="getPasswordInfo" resultType="com.amos.think.gateway.impl.database.dataobject.UserDO">
-		select password, salt
-		<include refid="FROM_TABLE"/>
-		where username = #{username}
+		SELECT password, salt FROM SYS_USER WHERE username = #{username}
 	</select>
 
 	<select id="getUserInfo" resultType="com.amos.think.gateway.impl.database.dataobject.UserDO">

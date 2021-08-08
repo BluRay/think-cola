@@ -31,7 +31,6 @@ public class UserGatewayImpl implements UserGateway {
 		if (StringUtils.isNotBlank(userEntity.getId())) {
 			Optional<UserDO> byId = userRepository.findById(userEntity.getId());
 			if (byId.isPresent()) {
-
 				// 更新
 				userDO = byId.get();
 				UserConvertor.mergeDataObject(userEntity, userDO);
@@ -44,7 +43,6 @@ public class UserGatewayImpl implements UserGateway {
 			String encryptPassword = DesSecretUtil.encrypt(userEntity.getPassword(), salt);
 			userEntity.setSalt(salt);
 			userEntity.setPassword(encryptPassword);
-
 			// 新增
 			userDO = UserConvertor.toDataObject(userEntity);
 		}

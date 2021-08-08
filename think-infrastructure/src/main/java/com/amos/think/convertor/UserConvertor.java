@@ -48,7 +48,9 @@ public class UserConvertor {
 		userDO.setPassword(userEntity.getPassword());
 		userDO.setSalt(userEntity.getSalt());
 		userDO.setName(userEntity.getName());
-
+		userDO.setPhoneNo(userEntity.getPhoneNo());
+		userDO.setGender(userEntity.getGender());
+		userDO.setMemo(userEntity.getMemo());
 		return userDO;
 	}
 
