@@ -13,11 +13,9 @@ import javax.annotation.Resource;
 
 /**
  * DESCRIPTION: UserAddCmdExe
- * @date 2021/1/10
  */
 @Component
 public class UserRegisterCmdExe {
-
 	@Resource
 	private UserMapper userMapper;
 	@Resource
@@ -26,17 +24,13 @@ public class UserRegisterCmdExe {
 	public Response execute(UserRegisterCmd cmd) {
 		UserRegisterCO userRegister = cmd.getUserRegister();
 		System.out.println("-->UserRegisterCmdExe userRegister:" + userRegister.getUsername() + "|" + userRegister.getPhoneNo());
-
 		UserValidator.checkUserRegister(userRegister);
 
 		// check 用户名是否重复
 		if (userMapper.existUsername(userRegister.getId(), userRegister.getUsername())) {
-			return Response.buildFailure(ErrorCode.B_USER_usernameRepeat.getErrCode(),
-				ErrorCode.B_USER_usernameRepeat.getErrDesc());
+			return Response.buildFailure(ErrorCode.B_USER_usernameRepeat.getErrCode(), ErrorCode.B_USER_usernameRepeat.getErrDesc());
 		}
-		System.out.println("--> UserConvertor " +UserConvertor.toEntity(userRegister).getPhoneNo() + "|" + UserConvertor.toEntity(userRegister).getMemo());
 		userGateway.save(UserConvertor.toEntity(userRegister));
-
 		return Response.buildSuccess();
 	}
 	

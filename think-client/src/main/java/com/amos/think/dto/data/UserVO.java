@@ -4,9 +4,6 @@ import lombok.Data;
 
 /**
  * DESCRIPTION: User VO
- *
- * @author <a href="mailto:daoyuan0626@gmail.com">amos.wang</a>
- * @date 2021/1/8
  */
 @Data
 public class UserVO {
@@ -26,10 +23,6 @@ public class UserVO {
      * 手机号（可用手机号登录，故放在用户主表）
      */
     private String phoneNo;
-
-    /*
-     * 附加信息
-     */
 
     /**
      * 性别
