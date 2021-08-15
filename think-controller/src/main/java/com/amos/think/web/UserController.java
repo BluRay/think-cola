@@ -52,6 +52,8 @@ public class UserController {
   @PostMapping(value = "/login")
   public Response login(@RequestBody UserLoginQuery userLoginQuery) {
     System.out.println("-->UserController login");
+    // 【/user/login】 自定义登录
+    // 【/login】 SpringBoot security 自带的登录
     return userService.login(userLoginQuery);
   }
 

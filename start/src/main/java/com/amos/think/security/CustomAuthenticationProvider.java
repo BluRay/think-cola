@@ -49,6 +49,8 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 		String name = authentication.getName();
 		String password = authentication.getCredentials().toString();
 		// 认证逻辑
+		// TODO 替换Spring security 认证逻辑
+
 		UserDetails userDetails = userDetailsService.loadUserByUsername(name);
 		if (null == userDetails) {
 			throw new UsernameNotFoundException("用户不存在");

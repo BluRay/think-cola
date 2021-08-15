@@ -24,3 +24,4 @@ nbdist/
 bin/
 .DS_Store/
 .vscode/
+.out

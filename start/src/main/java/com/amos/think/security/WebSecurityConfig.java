@@ -33,6 +33,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		// -- register url
 		"/user/register",
 		"/user/logout",
+		"/user/login",
 		"/user/hello",
 		"/h2/*"
 		// other public endpoints of your API may be appended to this array
