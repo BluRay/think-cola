@@ -8,6 +8,8 @@ import com.amos.think.dto.query.UserLoginQuery;
 import com.amos.think.gateway.impl.database.dataobject.UserDO;
 import com.amos.think.gateway.impl.database.mapper.UserMapper;
 import org.springframework.stereotype.Component;
+import java.util.HashMap;
+import java.util.Map;
 import javax.annotation.Resource;
 
 /**
@@ -29,8 +31,13 @@ public class UserLoginQueryExe {
 		if (!byUserName.getPassword().equals(encryptPwd)) {
 			return SingleResponse.buildFailure(ErrorCode.B_USER_passwordError.getErrCode(), ErrorCode.B_USER_passwordError.getErrDesc());
 		}
+		Map<String, Object> data = new HashMap<String, Object>();
+		data.put("CODE", 20000);
+		data.put("MSG", "success");
+		data.put("TOKEN", "token");
 
-		return Response.buildSuccess();
+		return SingleResponse.of(data);
+		// return Response.buildSuccess();
 	}
 
 }
