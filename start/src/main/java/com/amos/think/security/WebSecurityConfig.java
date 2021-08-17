@@ -1,5 +1,6 @@
 package com.amos.think.security;
 
+import com.amos.think.api.IUserService;
 import com.amos.think.filter.JWTAuthenticationFilter;
 import com.amos.think.filter.JWTLoginFilter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,8 +43,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private UserDetailsService userDetailsService;
 
+	//@Autowired
+	//private BCryptPasswordEncoder bCryptPasswordEncoder;
 	@Autowired
-	private BCryptPasswordEncoder bCryptPasswordEncoder;
+	private IUserService userService;
+
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
@@ -77,6 +81,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	public void configure(AuthenticationManagerBuilder auth) throws Exception {
 		// 使用自定义身份验证组件
-		auth.authenticationProvider(new CustomAuthenticationProvider(userDetailsService, bCryptPasswordEncoder));
+		auth.authenticationProvider(new CustomAuthenticationProvider(userDetailsService, userService));
 	}
 }

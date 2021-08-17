@@ -32,6 +32,9 @@ public class UserLoginQueryExe {
 			return SingleResponse.buildFailure(ErrorCode.B_USER_passwordError.getErrCode(), ErrorCode.B_USER_passwordError.getErrDesc());
 		}
 		Map<String, Object> data = new HashMap<String, Object>();
+		
+		// TODO 生成Token
+		// Authentication auth = new UsernamePasswordAuthenticationToken(query.getUserName(), query.getPassword());
 		data.put("CODE", 20000);
 		data.put("MSG", "success");
 		data.put("TOKEN", "token");

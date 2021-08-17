@@ -1,6 +1,10 @@
 package com.amos.think.security;
 
 import java.util.ArrayList;
+import javax.annotation.Resource;
+import com.alibaba.cola.dto.Response;
+import com.amos.think.api.IUserService;
+import com.amos.think.dto.query.UserLoginQuery;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -14,18 +18,20 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 /**
  * 自定义身份认证验证组件
- *
- * @author zhaoxinguo on 2017/9/12.
  */
 public class CustomAuthenticationProvider implements AuthenticationProvider {
 
 	private UserDetailsService userDetailsService;
 
-	private BCryptPasswordEncoder bCryptPasswordEncoder;
+	// private BCryptPasswordEncoder bCryptPasswordEncoder;
+	
+	// @Resource
+  private IUserService userService;
 
-	public CustomAuthenticationProvider(UserDetailsService userDetailsService, BCryptPasswordEncoder bCryptPasswordEncoder){
+	public CustomAuthenticationProvider(UserDetailsService userDetailsService, IUserService userService){
 		this.userDetailsService = userDetailsService;
-		this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+		// this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+		this.userService = userService;
 	}
 
   /**
@@ -50,6 +56,14 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 		String password = authentication.getCredentials().toString();
 		// 认证逻辑
 		// TODO 替换Spring security 认证逻辑
+		UserLoginQuery userLoginQuery = new UserLoginQuery();
+		userLoginQuery.setUserName(name);
+		userLoginQuery.setPassword(password);
+		Response res = userService.login(userLoginQuery);
+		System.out.println("-->login res:" + res.toString());
+		if (res.isSuccess()){
+			
+		}
 
 		UserDetails userDetails = userDetailsService.loadUserByUsername(name);
 		if (null == userDetails) {
