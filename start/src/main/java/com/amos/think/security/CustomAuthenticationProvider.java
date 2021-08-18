@@ -1,7 +1,6 @@
 package com.amos.think.security;
 
 import java.util.ArrayList;
-import javax.annotation.Resource;
 import com.alibaba.cola.dto.Response;
 import com.amos.think.api.IUserService;
 import com.amos.think.dto.query.UserLoginQuery;
@@ -14,7 +13,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 /**
  * 自定义身份认证验证组件
@@ -55,16 +53,19 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 		String name = authentication.getName();
 		String password = authentication.getCredentials().toString();
 		// 认证逻辑
-		// TODO 替换Spring security 认证逻辑
+		// 替换Spring security 认证逻辑
 		UserLoginQuery userLoginQuery = new UserLoginQuery();
 		userLoginQuery.setUserName(name);
 		userLoginQuery.setPassword(password);
 		Response res = userService.login(userLoginQuery);
 		System.out.println("-->login res:" + res.toString());
 		if (res.isSuccess()){
-			
+			Authentication auth = new UsernamePasswordAuthenticationToken(name, password);
+			return auth;
+		} else {
+			throw new BadCredentialsException("登陆失败:" + res.getErrMessage());
 		}
-
+		/** Spring security 默认认证逻辑
 		UserDetails userDetails = userDetailsService.loadUserByUsername(name);
 		if (null == userDetails) {
 			throw new UsernameNotFoundException("用户不存在");
@@ -80,7 +81,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 			}else {
 				throw new BadCredentialsException("密码错误");
 			}
-		}       
+		}**/   
 	}
 
 	/**
