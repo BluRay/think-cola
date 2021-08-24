@@ -35,9 +35,14 @@ public class UserLoginQueryExe {
 		
 		// TODO 生成Token
 		// Authentication auth = new UsernamePasswordAuthenticationToken(query.getUserName(), query.getPassword());
-		data.put("CODE", 20000);
-		data.put("MSG", "success");
-		data.put("TOKEN", "token");
+		// 兼容 vbenUi 数据格式 
+		// 错误的时候返回格式 {"code":-1,"result":null,"message":"Incorrect account or password！","type":"error"}
+    // 成功时返回格式 {"code":0,"result":{"roles":[{"roleName":"Super Admin","value":"super"}],"userId":"1","username":"vben","token":"fakeToken1","realName":"Vben Admin","desc":"manager"},"message":"ok","type":"success"}
+
+		data.put("code", 0);
+		data.put("result", "{\"roles\":[{\"roleName\":\"Super Admin\",\"value\":\"super\"}],\"userId\":\"1\",\"username\":\"vben\",\"token\":\"fakeToken1\",\"realName\":\"Vben Admin\",\"desc\":\"manager\"}");
+		data.put("msg", "登录成功");
+		data.put("type", "success");
 
 		return SingleResponse.of(data);
 		// return Response.buildSuccess();
