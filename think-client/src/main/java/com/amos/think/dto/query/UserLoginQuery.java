@@ -17,7 +17,7 @@ import javax.validation.constraints.NotBlank;
 public class UserLoginQuery extends Query {
 
     @NotBlank
-    private String userName;
+    private String username;
 
     @NotBlank
     private String password;

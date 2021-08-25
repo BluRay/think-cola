@@ -87,7 +87,7 @@ public class UserServiceTest {
     public void user_3_Login() {
         //1.prepare
         UserLoginQuery userLoginQuery = new UserLoginQuery();
-        userLoginQuery.setUserName(username);
+        userLoginQuery.setUsername(username);
         userLoginQuery.setPassword(password);
 
         //2.execute

@@ -56,6 +56,12 @@ public class UserController {
     // 【/login】 SpringBoot security 自带的登录
     return userService.login(userLoginQuery);
   }
+  @PostMapping(value = "/getUserInfo")
+  public Response getUserInfo(@RequestBody UserLoginQuery userLoginQuery) {
+    System.out.println("-->UserController getUserInfo");
+    // TODO VBen 通过token 获取用户信息
+    return userService.login(userLoginQuery);
+  }
 
   @PostMapping(value = "/logout")
   public Response logout() {

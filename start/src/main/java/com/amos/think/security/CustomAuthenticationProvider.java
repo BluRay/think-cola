@@ -55,7 +55,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 		// 认证逻辑
 		// 替换Spring security 认证逻辑
 		UserLoginQuery userLoginQuery = new UserLoginQuery();
-		userLoginQuery.setUserName(name);
+		userLoginQuery.setUsername(name);
 		userLoginQuery.setPassword(password);
 		Response res = userService.login(userLoginQuery);
 		System.out.println("-->login res:" + res.toString());
