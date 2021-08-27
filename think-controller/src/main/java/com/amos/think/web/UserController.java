@@ -3,6 +3,7 @@ package com.amos.think.web;
 import com.alibaba.cola.dto.MultiResponse;
 import com.alibaba.cola.dto.PageResponse;
 import com.alibaba.cola.dto.Response;
+import com.alibaba.cola.dto.SingleResponse;
 import com.amos.think.api.IUserService;
 import com.amos.think.dto.UserRegisterCmd;
 import com.amos.think.dto.clientobject.UserRegisterCO;
@@ -56,11 +57,45 @@ public class UserController {
     // 【/login】 SpringBoot security 自带的登录
     return userService.login(userLoginQuery);
   }
-  @PostMapping(value = "/getUserInfo")
-  public Response getUserInfo(@RequestBody UserLoginQuery userLoginQuery) {
+  @GetMapping(value = "/getUserInfo")
+  public Response getUserInfo(@RequestParam(required = true) String username) {
     System.out.println("-->UserController getUserInfo");
-    // TODO VBen 通过token 获取用户信息
-    return userService.login(userLoginQuery);
+    // TODO VBen 通过token 获取用户信息 数据格式：
+    /**{
+      userId: '1',
+      username: 'vben',
+      realName: 'Vben Admin',
+      avatar: 'https://q1.qlogo.cn/g?b=qq&nk=190848757&s=640',
+      desc: 'manager',
+      password: 'vben',
+      token: 'fakeToken1',
+      homePath: '/dashboard/analysis',
+      roles: [
+        {
+          roleName: 'Super Admin',
+          value: 'super',
+        },
+      ],
+    }**/
+    Map<String, Object> data = new HashMap<String, Object>();
+    Map<String, Object> result = new HashMap<String, Object>();
+    result.put("userId", "1");
+    result.put("username", "admin");
+    result.put("realName", "管理员");
+    result.put("avatar", "https://q1.qlogo.cn/g?b=qq&nk=190848757&s=640");
+    result.put("desc", "系统管理员");
+    result.put("homePath", "/dashboard/analysis");
+		Map<String, Object> role = new HashMap<String, Object>();
+		role.put("roleName", "Super Admin");
+		role.put("value", "super");
+		List<Map<String, Object>> roles = new ArrayList<Map<String, Object>>();
+		roles.add(role);
+		result.put("roles", roles);
+    data.put("code", 0);
+		data.put("result", result);
+		data.put("message", "查询成功");
+		data.put("type", "success");
+    return SingleResponse.of(data);
   }
 
   @PostMapping(value = "/logout")

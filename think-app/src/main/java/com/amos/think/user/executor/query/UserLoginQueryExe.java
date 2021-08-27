@@ -8,10 +8,16 @@ import com.amos.think.dto.query.UserLoginQuery;
 import com.amos.think.gateway.impl.database.dataobject.UserDO;
 import com.amos.think.gateway.impl.database.mapper.UserMapper;
 import org.springframework.stereotype.Component;
+
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Map;
+import java.util.Date;
 import javax.annotation.Resource;
 
 /**
@@ -36,7 +42,24 @@ public class UserLoginQueryExe {
 		Map<String, Object> data = new HashMap<String, Object>();
 		
 		// TODO 生成Token
-		// Authentication auth = new UsernamePasswordAuthenticationToken(query.getUserName(), query.getPassword());
+		// 生成token start
+		String token = null;
+		Calendar calendar = Calendar.getInstance();
+		Date now = calendar.getTime();
+		// 设置签发时间
+		calendar.setTime(new Date());
+		// 设置过期时间
+		calendar.add(Calendar.MINUTE, 15);// 5分钟
+		Date time = calendar.getTime();
+		List<String> roleList = new ArrayList<String>();
+		roleList.add("admin");
+		token = Jwts.builder().setSubject(query.getUsername() + "-" + roleList).setIssuedAt(now)// 签发时间
+			.setExpiration(time)// 过期时间
+			.signWith(SignatureAlgorithm.HS512, "spring-security-@Jwt!&Secret^#") // 采用什么算法是可以自己选择的，不一定非要采用HS512
+			.compact();
+		// 生成token end
+		
+		// Authentication auth = new UsernamePasswordAuthenticationToken(query.getUsername(), query.getPassword());
 		// 兼容 vbenUi 数据格式 
 		// 错误的时候返回格式 {"code":-1,"result":null,"message":"Incorrect account or password！","type":"error"}
     // 成功时返回格式 {"code":0,"result":{"roles":[{"roleName":"Super Admin","value":"super"}],"userId":"1","username":"vben","token":"fakeToken1","realName":"Vben Admin","desc":"manager"},"message":"ok","type":"success"}
@@ -44,7 +67,7 @@ public class UserLoginQueryExe {
 		Map<String, Object> result = new HashMap<String, Object>();
 		result.put("userId", "1");
 		result.put("username", "admin");
-		result.put("token", "fakeToken1");
+		result.put("token", "Bearer " + token);
 		result.put("realName", "管理员");
 		result.put("desc", "manage");
 		Map<String, Object> role = new HashMap<String, Object>();
