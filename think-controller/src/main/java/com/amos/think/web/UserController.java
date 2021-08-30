@@ -25,11 +25,20 @@ public class UserController {
   CREATE TABLE `SYS_USER` (
   `ID` int(6) NOT NULL AUTO_INCREMENT,
   `USERNAME` varchar(100) DEFAULT NULL,
+  `SALT` varchar(100) DEFAULT NULL,
   `PASSWORD` varchar(100) DEFAULT NULL,
+  `NAME` varchar(100) DEFAULT NULL,
   `ADDRESS` varchar(100) DEFAULT NULL,
+  `PHONENO` varchar(20) DEFAULT NULL,
+  `GENDER` varchar(2) DEFAULT NULL COMMENT '性别',
+  `BIRTHDAY` varchar(20) DEFAULT NULL,
   `MEMO` varchar(100) DEFAULT NULL,
+  `CREATOR` varchar(20) DEFAULT NULL,
+  `CREATETIME` varchar(40) DEFAULT NULL,
+  `MODIFIER` varchar(20) DEFAULT NULL,
+  `MODIFYTIME` varchar(40) DEFAULT NULL,
   PRIMARY KEY (`ID`)
-  ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='系统用户'
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='系统用户'
    */
 
   @Resource
@@ -60,7 +69,7 @@ public class UserController {
   @GetMapping(value = "/getUserInfo")
   public Response getUserInfo(@RequestParam(required = true) String username) {
     System.out.println("-->UserController getUserInfo");
-    // TODO VBen 通过token 获取用户信息 数据格式：
+    // VBen 通过token 获取用户信息 数据格式：
     /**{
       userId: '1',
       username: 'vben',

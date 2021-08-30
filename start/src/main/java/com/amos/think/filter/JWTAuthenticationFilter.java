@@ -121,7 +121,7 @@ public class JWTAuthenticationFilter extends BasicAuthenticationFilter {
 			// throw new Exception("Token已过期");
 			response.setCharacterEncoding("UTF-8");
 			response.setContentType("application/json");
-			response.getWriter().println(JSON.parse("{\"code\":-1,\"msg\":\"Token已过期\"}"));
+			response.getWriter().println(JSON.parse("{\"code\":-1,\"msg\":\"Token已过期\",\"data\":{\"code\":401}}"));
 			response.getWriter().flush();
 		} catch (UnsupportedJwtException e) {
 			// logger.error("Token格式错误: {} " + e);
