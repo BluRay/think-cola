@@ -21,7 +21,6 @@ public class SystemService implements ISystemService {
     String pageSize = (parmsMap.get("pageSize") != null && !parmsMap.get("pageSize").equals(""))
       ? parmsMap.get("pageSize").toString()
       : "15";
-		System.out.println("-->pageNo:" + pageNo + ",pageSize:" + pageSize);
     int start = 0;
     int length = 15;
     if (parmsMap.get("pageSize") != null && !parmsMap.get("pageSize").equals("")) {
