@@ -41,7 +41,7 @@ public class UserLoginQueryExe {
 		}
 		Map<String, Object> data = new HashMap<String, Object>();
 		
-		// TODO 生成Token
+		// 验证用户名密码成功后开始生成Token
 		// 生成token start
 		String token = null;
 		Calendar calendar = Calendar.getInstance();
