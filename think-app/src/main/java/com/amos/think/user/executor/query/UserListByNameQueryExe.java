@@ -22,7 +22,7 @@ public class UserListByNameQueryExe {
 
 	public MultiResponse<Map<String, Object>> execute() {
 		List<Map<String, Object>> resultList = new ArrayList<Map<String, Object>>();
-		resultList = userMapper.listSysUser();
+		resultList = userMapper.listSysUser(null);
 		return MultiResponse.of(resultList);
 	}
 
@@ -42,8 +42,8 @@ public class UserListByNameQueryExe {
     }
     parmsMap.put("start", start);
     parmsMap.put("length", length);
-		int totalCount = 100;
-		return PageResponse.of(userMapper.listSysUser(), totalCount, length, Integer.valueOf(pageNo));
+		int totalCount = userMapper.listSysUserTotal(parmsMap);
+		return PageResponse.of(userMapper.listSysUser(parmsMap), totalCount, length, Integer.valueOf(pageNo));
 	}
 
 	public MultiResponse<UserVO> execute(UserListByNameQuery query) {

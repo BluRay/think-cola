@@ -7,12 +7,6 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 import java.util.Map;
 
-/**
- * DESCRIPTION: User Mapper
- *
- * @author <a href="mailto:daoyuan0626@gmail.com">amos.wang</a>
- * @date 2021/1/8
- */
 @Mapper
 public interface UserMapper {
 
@@ -20,7 +14,9 @@ public interface UserMapper {
 
     UserDO getUserInfo(String username);
 
-    List<Map<String, Object>> listSysUser();
+    List<Map<String, Object>> listSysUser(Map<String, Object> parmsMap);
+    int listSysUserTotal(Map<String, Object> parmsMap);
+
     List<UserDO> listByName(UserListByNameQuery query);
 
     Boolean existUsername(@Param("userId") String userId, @Param("username") String username);

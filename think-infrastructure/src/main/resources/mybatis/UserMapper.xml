@@ -18,8 +18,15 @@
 			</if>
 		</where>
 	</select>
-	<select id="listSysUser" resultType="Map">
-	SELECT * FROM SYS_USER
+
+	<select id="listSysUser" parameterType="Map" resultType="Map">
+		SELECT * FROM SYS_USER 
+		<if test="start !=null and length !=-1 ">
+		LIMIT ${start} , ${length}
+		</if>
+	</select>
+	<select id="listSysUserTotal" parameterType="Map" resultType="int">
+		SELECT COUNT(*) FROM SYS_USER 
 	</select>
 
 	<select id="existUsername" resultType="java.lang.Boolean">
