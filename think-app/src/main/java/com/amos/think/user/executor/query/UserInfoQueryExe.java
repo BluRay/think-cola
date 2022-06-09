@@ -7,7 +7,6 @@ import com.amos.think.dto.data.UserVO;
 import com.amos.think.gateway.impl.database.dataobject.UserDO;
 import com.amos.think.gateway.impl.database.mapper.UserMapper;
 import org.springframework.stereotype.Component;
-
 import javax.annotation.Resource;
 import java.util.Objects;
 

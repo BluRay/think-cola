@@ -13,11 +13,11 @@ import javax.persistence.*;
 @Entity
 @Table(name = "SYS_USER", indexes = {@Index(columnList = "username")})
 public class UserDO extends BaseDO {
-
 	/**
 	 * 用户名
 	 */
 	private String username;
+	private String realname;	// 真实姓名 前台显示用户名
 	/**
 	 * 密码
 	 */
@@ -26,18 +26,13 @@ public class UserDO extends BaseDO {
 	 * 密码盐
 	 */
 	private String salt;
-
 	/**
 	 * 姓名（较常用，故放在用户主表）
 	 */
 	private String name;
-	
+	private String address;
 	private String phoneNo;
-
 	private Integer gender;
-
 	private String birthday;
-
 	private String memo;
-
 }

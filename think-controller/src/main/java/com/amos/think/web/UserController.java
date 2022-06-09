@@ -11,6 +11,8 @@ import com.amos.think.dto.query.UserLoginQuery;
 import org.springframework.web.bind.annotation.*;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.crypto.digest.DigestUtil;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -114,10 +116,20 @@ public class UserController {
   }
 
   @GetMapping(value = "/info")
-  public MultiResponse<Map<String, Object>> userinfo(@RequestParam(required = false) String name) {
+  @SuppressWarnings("unchecked")
+  public MultiResponse<Map<String, Object>> userinfo(@RequestParam(required = false) String token) {
     Map<String, Object> usermap = new HashMap<String, Object>();
+    System.out.println("-->UserController info token : " + token);
+    // 解析token
+    if (token == null || token.isEmpty()) {
+      return MultiResponse.buildFailure("-10", "token error");
+    }
+    Claims claims = Jwts.parser().setSigningKey("spring-security-@Jwt!&Secret^#").parseClaimsJws(token.replace("Bearer ", "")).getBody();
+    String token_user = claims.getSubject();
+    System.out.println("-->UserController info token_user : " + token_user);
+    // SingleResponse<UserVO> user = userService.getUserInfo("");
     usermap.put("avatar", "https://file.iviewui.com/dist/a0e88e83800f138b94d2414621bd9704.png");
-    usermap.put("name", "测试用户名");
+    usermap.put("name", token_user.substring(0, token_user.indexOf("-")));
     usermap.put("introduction", "introduction");
     usermap.put("roles", Arrays.asList("super_admin", "admin"));
     List<Map<String, Object>> resultList = new ArrayList<Map<String, Object>>();

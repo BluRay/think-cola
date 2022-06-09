@@ -8,10 +8,8 @@ import com.amos.think.dto.query.UserLoginQuery;
 import com.amos.think.gateway.impl.database.dataobject.UserDO;
 import com.amos.think.gateway.impl.database.mapper.UserMapper;
 import org.springframework.stereotype.Component;
-
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
@@ -42,6 +40,7 @@ public class UserLoginQueryExe {
 		Map<String, Object> data = new HashMap<String, Object>();
 		
 		// 验证用户名密码成功后开始生成Token
+		System.out.println("--> login success : " + query.getUsername());
 		// 生成token start
 		String token = null;
 		Calendar calendar = Calendar.getInstance();
