@@ -5,4 +5,6 @@ import java.util.Map;
 
 public interface IFuturesService {
     PageResponse<Map<String, Object>> getAccountPageList(Map<String, Object> parmsMap);
+
+    int uploadAccount(Map<String, Object> parmsMap);
 }

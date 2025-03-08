@@ -9,4 +9,6 @@ import java.util.Map;
 public interface FuturesMapper {
   List<Map<String, Object>> getAccountPageDate(@Param(value = "paramMap") Map<String, Object> paramMap);
   int getAccountTotalCount(@Param(value = "paramMap") Map<String, Object> paramMap);
+  int uploadAccount(@Param(value = "paramMap") Map<String, Object> paramMap);
+  int deleteAccount(@Param(value = "paramMap") Map<String, Object> paramMap);
 }

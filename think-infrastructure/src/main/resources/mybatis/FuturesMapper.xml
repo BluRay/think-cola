@@ -2,9 +2,44 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.amos.think.gateway.impl.database.mapper.FuturesMapper">
   <select id="getAccountPageDate" parameterType="Map" resultType="Map">
-  SELECT * FROM account
+  SELECT * FROM account WHERE 1=1
+		<if test="paramMap.account_date != null and paramMap.account_date != ''">
+			and 数据日期 = #{paramMap.account_date}
+		</if>
+		<if test="paramMap.account_date == null || paramMap.account_date == ''">
+			and 数据日期 = (SELECT max(数据日期) FROM account )
+		</if>
+		<if test="paramMap.keyword != null and paramMap.keyword != ''">
+			and (交易账户 LIKE concat('%',#{paramMap.keyword},'%') or 名称 LIKE concat('%',#{paramMap.keyword},'%'))
+		</if>
   </select>
   <select id="getAccountTotalCount" parameterType="Map" resultType="int">
-  SELECT COUNT(*) FROM account
+  SELECT COUNT(*) FROM account WHERE 1=1
+		<if test="paramMap.account_date != null and paramMap.account_date != ''">
+			and 数据日期 = #{paramMap.account_date}
+		</if>
+		<if test="paramMap.account_date == null || paramMap.account_date == ''">
+			and 数据日期 = (SELECT max(数据日期) FROM account )
+		</if>
+		<if test="paramMap.keyword != null and paramMap.keyword != ''">
+			and (交易账户 LIKE concat('%',#{paramMap.keyword},'%') or 名称 LIKE concat('%',#{paramMap.keyword},'%'))
+		</if>
   </select>
+  <update id="uploadAccount" parameterType="Map">
+    INSERT INTO account (交易账户,名称,风险度,市值权益,优先资金,
+    劣后资金,安全度,可用资金,平仓盈亏,持仓盈亏,
+    保证金,手续费,挂单冻结,出入金,当前权益,
+    期权市值,权利金收支,上日市值权益,上日权益,上日期权市值,
+    期初投入,净值,组别,所属资金账户,备注,
+    数据日期,导入人,导入时间) VALUES 
+    (#{paramMap.d1},#{paramMap.d2},#{paramMap.d3},#{paramMap.d4},#{paramMap.d5},
+    #{paramMap.d6},#{paramMap.d7},#{paramMap.d8},#{paramMap.d9},#{paramMap.d10},
+    #{paramMap.d11},#{paramMap.d12},#{paramMap.d13},#{paramMap.d14},#{paramMap.d15},
+    #{paramMap.d16},#{paramMap.d17},#{paramMap.d18},#{paramMap.d19},#{paramMap.d20},
+    #{paramMap.d21},#{paramMap.d22},#{paramMap.d23},#{paramMap.d24},#{paramMap.d25},
+    #{paramMap.d26},#{paramMap.d27},#{paramMap.d28} )
+  </update>
+  <update id="deleteAccount" parameterType="Map">
+  DELETE FROM account WHERE 数据日期 = #{paramMap.account_date}
+  </update>
 </mapper>
