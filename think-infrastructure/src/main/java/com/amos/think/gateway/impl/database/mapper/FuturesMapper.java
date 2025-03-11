@@ -11,4 +11,6 @@ public interface FuturesMapper {
   int getAccountTotalCount(@Param(value = "paramMap") Map<String, Object> paramMap);
   int uploadAccount(@Param(value = "paramMap") Map<String, Object> paramMap);
   int deleteAccount(@Param(value = "paramMap") Map<String, Object> paramMap);
+  List<Map<String, Object>> getAccountDateList(@Param(value = "paramMap") Map<String, Object> paramMap);
+  List<Map<String, Object>> getAccountLineData(@Param(value = "paramMap") Map<String, Object> paramMap);
 }

@@ -42,4 +42,14 @@
   <update id="deleteAccount" parameterType="Map">
   DELETE FROM account WHERE 数据日期 = #{paramMap.account_date}
   </update>
+  <select id="getAccountDateList" parameterType="Map" resultType="Map">
+  SELECT DISTINCT 数据日期 FROM account ORDER BY 数据日期 DESC LIMIT 7
+  </select>
+  <select id="getAccountLineData" parameterType="Map" resultType="Map">
+  SELECT DISTINCT 名称, 
+  <foreach collection="paramMap.dateList" item="d" separator=",">
+  ifnull((SELECT ${paramMap.series} FROM account WHERE 名称 = a.名称 AND 数据日期 = #{d.数据日期}), '0.00') #{d.数据日期}
+  </foreach>
+	FROM account a
+  </select>
 </mapper>

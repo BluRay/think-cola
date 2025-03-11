@@ -35,4 +35,13 @@ public class FuturesController {
     data.put("type", "success");
     return SingleResponse.of(data);
   }
+  @PostMapping(value = "/getAccountLineChart")
+  public Response getAccountLineChart(@RequestBody(required = false) Map<String, Object> parmsMap) {
+    Map<String, Object> data = new HashMap<>();
+    data.put("code", 0);
+    data.put("result", futuresService.getAccountLineChart(parmsMap));
+    data.put("message", "查询成功");
+    data.put("type", "success");
+    return SingleResponse.of(data);
+  }
 }

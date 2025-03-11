@@ -2,8 +2,12 @@ package com.amos.think.futures;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Map;
 import javax.annotation.Resource;
+import com.alibaba.cola.dto.Response;
+import com.alibaba.cola.dto.PageResponse;
+import com.alibaba.cola.dto.SingleResponse;
 import org.springframework.stereotype.Service;
 import com.alibaba.cola.dto.PageResponse;
 import com.amos.think.api.IFuturesService;
@@ -13,7 +17,7 @@ import cn.hutool.core.date.DateUtil;
 @Service
 public class FuturesService implements IFuturesService {
     @Resource
-	private FuturesMapper futuresMapper;
+		private FuturesMapper futuresMapper;
     @Override
     public PageResponse<Map<String, Object>> getAccountPageList(Map<String, Object> parmsMap) {
         String pageNo = (parmsMap.get("currentPage") != null && !parmsMap.get("currentPage").equals(""))
@@ -84,5 +88,17 @@ public class FuturesService implements IFuturesService {
 
       return 0;
     }
-    
+    @Override
+    public Response getAccountLineChart(Map<String, Object> parmsMap) {
+    	Map<String, Object> data = new HashMap<String, Object>();
+    	parmsMap.put("series", "风险度");
+    	List<Map<String, Object>> dateList = new ArrayList<Map<String, Object>>();
+    	List<Map<String, Object>> lineDataList = new ArrayList<Map<String, Object>>();
+			dateList = futuresMapper.getAccountDateList(parmsMap);
+			parmsMap.put("dateList", dateList);
+			lineDataList = futuresMapper.getAccountLineData(parmsMap);
+			data.put("dateList", dateList);
+			data.put("lineData", lineDataList);
+			return SingleResponse.of(data);
+    }
 }
