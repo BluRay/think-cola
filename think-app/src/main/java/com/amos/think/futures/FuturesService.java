@@ -101,4 +101,22 @@ public class FuturesService implements IFuturesService {
 			data.put("lineData", lineDataList);
 			return SingleResponse.of(data);
     }
+    
+    @Override
+    public Response getRqTradeBooksData(Map<String, Object> parmsMap) {
+    	Map<String, Object> data = new HashMap<String, Object>();
+    	List<Map<String, Object>> dateList = new ArrayList<Map<String, Object>>();
+    	dateList = futuresMapper.getRqTradeBooksData(parmsMap);
+    	data.put("dateList", dateList);
+    	return SingleResponse.of(data);
+    }
+    
+    @Override
+    public Response getRqTradeAccountData(Map<String, Object> parmsMap) {
+    	Map<String, Object> data = new HashMap<String, Object>();
+    	List<Map<String, Object>> dateList = new ArrayList<Map<String, Object>>();
+    	dateList = futuresMapper.getRqTradeAccountData(parmsMap);
+    	data.put("dateList", dateList);
+    	return SingleResponse.of(data);
+    }
 }

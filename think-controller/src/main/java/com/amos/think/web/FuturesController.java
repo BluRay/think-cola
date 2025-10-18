@@ -44,4 +44,23 @@ public class FuturesController {
     data.put("type", "success");
     return SingleResponse.of(data);
   }
+
+  @PostMapping(value = "/getRqTradeBooksData")
+  public Response getRqTradeBooksData(@RequestBody(required = false) Map<String, Object> parmsMap) {
+    Map<String, Object> data = new HashMap<>();
+    data.put("code", 0);
+    data.put("result", futuresService.getRqTradeBooksData(parmsMap));
+    data.put("message", "查询成功");
+    data.put("type", "success");
+    return SingleResponse.of(data);
+  }
+  @PostMapping(value = "/getRqTradeAccountData")
+  public Response getRqTradeAccountData(@RequestBody(required = false) Map<String, Object> parmsMap) {
+    Map<String, Object> data = new HashMap<>();
+    data.put("code", 0);
+    data.put("result", futuresService.getRqTradeAccountData(parmsMap));
+    data.put("message", "查询成功");
+    data.put("type", "success");
+    return SingleResponse.of(data);
+  }
 }

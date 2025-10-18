@@ -10,4 +10,8 @@ public interface IFuturesService {
     int uploadAccount(Map<String, Object> parmsMap);
     
     Response getAccountLineChart(Map<String, Object> parmsMap);
+    
+    Response getRqTradeBooksData(Map<String, Object> parmsMap);
+    
+    Response getRqTradeAccountData(Map<String, Object> parmsMap);
 }
