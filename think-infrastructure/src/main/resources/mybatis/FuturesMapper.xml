@@ -54,7 +54,7 @@
   </select>
   
   <select id="getRqTradeBooksData" parameterType="Map" resultType="Map">
-  SELECT * FROM rq_books WHERE status = '0' 
+  SELECT * FROM rq_books WHERE 1=1 
   	<if test="paramMap.book_id != null and paramMap.book_id != ''">
 			AND book_id= #{paramMap.book_id}
 		</if>
@@ -62,6 +62,16 @@
 			AND exchange_id = #{paramMap.exchange_id}
 		</if>
 	</select>
+	<update id="insertTradeBooksData" parameterType="Map">
+
+	</update>
+	<update id="updateTradeBooksData" parameterType="Map">
+
+	</update>
+	<update id="deleteTradeBooksData" parameterType="Map">
+
+	</update>
+
   <select id="getRqTradeAccountData" parameterType="Map" resultType="Map">
   SELECT * FROM rq_account WHERE status = '0' 
   	<if test="paramMap.account_id != null and paramMap.account_id != ''">
