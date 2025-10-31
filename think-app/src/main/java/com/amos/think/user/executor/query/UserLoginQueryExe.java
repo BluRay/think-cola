@@ -48,7 +48,7 @@ public class UserLoginQueryExe {
 		// 设置签发时间
 		calendar.setTime(new Date());
 		// 设置过期时间
-		calendar.add(Calendar.MINUTE, 15);// 5分钟
+		calendar.add(Calendar.MINUTE, 60*20);// 5分钟
 		Date time = calendar.getTime();
 		List<String> roleList = new ArrayList<String>();
 		roleList.add("admin");
