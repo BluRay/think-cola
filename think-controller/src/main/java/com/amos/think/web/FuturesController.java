@@ -54,6 +54,34 @@ public class FuturesController {
     data.put("type", "success");
     return SingleResponse.of(data);
   }
+  @PostMapping(value = "/insertTradeBooksData")
+  public Response insertTradeBooksData(@RequestBody(required = false) Map<String, Object> parmsMap) {
+    Map<String, Object> data = new HashMap<>();
+    data.put("code", 0);
+    data.put("result", futuresService.insertTradeBooksData(parmsMap));
+    data.put("message", "操作成功");
+    data.put("type", "success");
+    return SingleResponse.of(data);
+  }
+  @PostMapping(value = "/updateTradeBooksData")
+  public Response updateTradeBooksData(@RequestBody(required = false) Map<String, Object> parmsMap) {
+    Map<String, Object> data = new HashMap<>();
+    data.put("code", 0);
+    data.put("result", futuresService.updateTradeBooksData(parmsMap));
+    data.put("message", "操作成功");
+    data.put("type", "success");
+    return SingleResponse.of(data);
+  }
+  @PostMapping(value = "/deleteTradeBooksData")
+  public Response deleteTradeBooksData(@RequestBody(required = false) Map<String, Object> parmsMap) {
+    Map<String, Object> data = new HashMap<>();
+    data.put("code", 0);
+    data.put("result", futuresService.deleteTradeBooksData(parmsMap));
+    data.put("message", "操作成功");
+    data.put("type", "success");
+    return SingleResponse.of(data);
+  }
+
   @PostMapping(value = "/getRqTradeAccountData")
   public Response getRqTradeAccountData(@RequestBody(required = false) Map<String, Object> parmsMap) {
     Map<String, Object> data = new HashMap<>();

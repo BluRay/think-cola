@@ -61,15 +61,26 @@
   	<if test="paramMap.exchange_id != null and paramMap.exchange_id != ''">
 			AND exchange_id = #{paramMap.exchange_id}
 		</if>
+  	<if test="paramMap.status != null and paramMap.status != ''">
+			AND status = #{paramMap.status}
+		</if>
+		<if test="paramMap.keyword != null and paramMap.keyword != ''">
+			and (book_id LIKE concat('%',#{paramMap.keyword},'%') or book_name LIKE concat('%',#{paramMap.keyword},'%') or exchange_name LIKE concat('%',#{paramMap.keyword},'%') or exchange_id LIKE concat('%',#{paramMap.keyword},'%'))
+		</if>
 	</select>
 	<update id="insertTradeBooksData" parameterType="Map">
-
+	INSERT INTO rq_books (book_id,book_name,exchange_id,exchange_name,start_time,end_time,status)
+	VALUES(#{paramMap.book_id},#{paramMap.book_name},#{paramMap.exchange_id},#{paramMap.exchange_name},
+	#{paramMap.start_time},#{paramMap.end_time},#{paramMap.status})
 	</update>
 	<update id="updateTradeBooksData" parameterType="Map">
-
+	UPDATE rq_books SET book_id = #{paramMap.book_id},book_name = #{paramMap.book_name},
+	exchange_id = #{paramMap.exchange_id},exchange_name = #{paramMap.exchange_name},
+	start_time = #{paramMap.start_time},end_time = #{paramMap.end_time},status = #{paramMap.status}
+	WHERE id = #{paramMap.id}
 	</update>
 	<update id="deleteTradeBooksData" parameterType="Map">
-
+	DELETE FROM rq_books WHERE id = #{paramMap.id}
 	</update>
 
   <select id="getRqTradeAccountData" parameterType="Map" resultType="Map">
