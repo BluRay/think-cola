@@ -139,4 +139,24 @@ public class FuturesService implements IFuturesService {
     	data.put("dateList", dateList);
     	return SingleResponse.of(data);
     }
+    @Override
+    public int insertTradeAccountData(Map<String, Object> parmsMap) {
+      List<Map<String, Object>> dateList = new ArrayList<Map<String, Object>>();
+      dateList = futuresMapper.getRqTradeAccountData(parmsMap);
+      if (dateList.size() > 0) {
+        return -1;
+      }
+      futuresMapper.insertTradeAccountData(parmsMap);
+      return 0;
+    }
+    @Override
+    public int updateTradeAccountData(Map<String, Object> parmsMap) {
+      futuresMapper.updateTradeAccountData(parmsMap);
+      return 0;
+    }
+    @Override
+    public int deleteTradeAccountData(Map<String, Object> parmsMap) {
+      futuresMapper.deleteTradeAccountData(parmsMap);
+      return 0;
+    }
 }

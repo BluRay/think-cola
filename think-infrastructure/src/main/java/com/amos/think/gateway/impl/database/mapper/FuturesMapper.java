@@ -20,4 +20,7 @@ public interface FuturesMapper {
   int deleteTradeBooksData(@Param(value = "paramMap") Map<String, Object> paramMap);
 
   List<Map<String, Object>> getRqTradeAccountData(@Param(value = "paramMap") Map<String, Object> paramMap);
+  int insertTradeAccountData(@Param(value = "paramMap") Map<String, Object> paramMap);
+  int updateTradeAccountData(@Param(value = "paramMap") Map<String, Object> paramMap);
+  int deleteTradeAccountData(@Param(value = "paramMap") Map<String, Object> paramMap);
 }

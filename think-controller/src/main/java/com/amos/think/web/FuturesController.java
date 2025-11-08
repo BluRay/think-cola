@@ -91,4 +91,31 @@ public class FuturesController {
     data.put("type", "success");
     return SingleResponse.of(data);
   }
+  @PostMapping(value = "/insertTradeAccountData")
+  public Response insertTradeAccountData(@RequestBody(required = false) Map<String, Object> parmsMap) {
+    Map<String, Object> data = new HashMap<>();
+    data.put("code", 0);
+    data.put("result", futuresService.insertTradeAccountData(parmsMap));
+    data.put("message", "操作成功");
+    data.put("type", "success");
+    return SingleResponse.of(data);
+  }
+  @PostMapping(value = "/updateTradeAccountData")
+  public Response updateTradeAccountData(@RequestBody(required = false) Map<String, Object> parmsMap) {
+    Map<String, Object> data = new HashMap<>();
+    data.put("code", 0);
+    data.put("result", futuresService.updateTradeAccountData(parmsMap));
+    data.put("message", "操作成功");
+    data.put("type", "success");
+    return SingleResponse.of(data);
+  }
+  @PostMapping(value = "/deleteTradeAccountData")
+  public Response deleteTradeAccountData(@RequestBody(required = false) Map<String, Object> parmsMap) {
+    Map<String, Object> data = new HashMap<>();
+    data.put("code", 0);
+    data.put("result", futuresService.deleteTradeAccountData(parmsMap));
+    data.put("message", "操作成功");
+    data.put("type", "success");
+    return SingleResponse.of(data);
+  }
 }

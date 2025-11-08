@@ -17,4 +17,7 @@ public interface IFuturesService {
     int deleteTradeBooksData(Map<String, Object> parmsMap);
     
     Response getRqTradeAccountData(Map<String, Object> parmsMap);
+    int insertTradeAccountData(Map<String, Object> parmsMap);
+    int updateTradeAccountData(Map<String, Object> parmsMap);
+    int deleteTradeAccountData(Map<String, Object> parmsMap);
 }
