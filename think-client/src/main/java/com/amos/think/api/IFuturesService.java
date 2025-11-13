@@ -20,4 +20,9 @@ public interface IFuturesService {
     int insertTradeAccountData(Map<String, Object> parmsMap);
     int updateTradeAccountData(Map<String, Object> parmsMap);
     int deleteTradeAccountData(Map<String, Object> parmsMap);
+    
+    Response getRqTacticsData(Map<String, Object> parmsMap);
+    int insertTacticsData(Map<String, Object> parmsMap);
+    int updateTacticsData(Map<String, Object> parmsMap);
+    int deleteTacticsData(Map<String, Object> parmsMap);
 }

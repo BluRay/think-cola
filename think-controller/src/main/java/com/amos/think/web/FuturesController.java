@@ -118,4 +118,41 @@ public class FuturesController {
     data.put("type", "success");
     return SingleResponse.of(data);
   }
+
+  @PostMapping(value = "/getRqTacticsData")
+  public Response getRqTacticsData(@RequestBody(required = false) Map<String, Object> parmsMap) {
+    Map<String, Object> data = new HashMap<>();
+    data.put("code", 0);
+    data.put("result", futuresService.getRqTacticsData(parmsMap));
+    data.put("message", "查询成功");
+    data.put("type", "success");
+    return SingleResponse.of(data);
+  }
+  @PostMapping(value = "/insertTacticsData")
+  public Response insertTacticsData(@RequestBody(required = false) Map<String, Object> parmsMap) {
+    Map<String, Object> data = new HashMap<>();
+    data.put("code", 0);
+    data.put("result", futuresService.insertTacticsData(parmsMap));
+    data.put("message", "操作成功");
+    data.put("type", "success");
+    return SingleResponse.of(data);
+  }
+  @PostMapping(value = "/updateTacticsData")
+  public Response updateTacticsData(@RequestBody(required = false) Map<String, Object> parmsMap) {
+    Map<String, Object> data = new HashMap<>();
+    data.put("code", 0);
+    data.put("result", futuresService.updateTacticsData(parmsMap));
+    data.put("message", "操作成功");
+    data.put("type", "success");
+    return SingleResponse.of(data);
+  }
+  @PostMapping(value = "/deleteTacticsData")
+  public Response deleteTacticsData(@RequestBody(required = false) Map<String, Object> parmsMap) {
+    Map<String, Object> data = new HashMap<>();
+    data.put("code", 0);
+    data.put("result", futuresService.deleteTacticsData(parmsMap));
+    data.put("message", "操作成功");
+    data.put("type", "success");
+    return SingleResponse.of(data);
+  }
 }

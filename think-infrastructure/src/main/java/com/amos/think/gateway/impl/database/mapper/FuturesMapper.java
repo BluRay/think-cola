@@ -13,14 +13,19 @@ public interface FuturesMapper {
   int deleteAccount(@Param(value = "paramMap") Map<String, Object> paramMap);
   List<Map<String, Object>> getAccountDateList(@Param(value = "paramMap") Map<String, Object> paramMap);
   List<Map<String, Object>> getAccountLineData(@Param(value = "paramMap") Map<String, Object> paramMap);
-  
+  // 交易品种维护
   List<Map<String, Object>> getRqTradeBooksData(@Param(value = "paramMap") Map<String, Object> paramMap);
   int insertTradeBooksData(@Param(value = "paramMap") Map<String, Object> paramMap);
   int updateTradeBooksData(@Param(value = "paramMap") Map<String, Object> paramMap);
   int deleteTradeBooksData(@Param(value = "paramMap") Map<String, Object> paramMap);
-
+  // 交易帐号维护
   List<Map<String, Object>> getRqTradeAccountData(@Param(value = "paramMap") Map<String, Object> paramMap);
   int insertTradeAccountData(@Param(value = "paramMap") Map<String, Object> paramMap);
   int updateTradeAccountData(@Param(value = "paramMap") Map<String, Object> paramMap);
   int deleteTradeAccountData(@Param(value = "paramMap") Map<String, Object> paramMap);
+  // 交易策略维护
+  List<Map<String, Object>> getRqTacticsData(@Param(value = "paramMap") Map<String, Object> paramMap);
+  int insertTacticsData(@Param(value = "paramMap") Map<String, Object> paramMap);
+  int updateTacticsData(@Param(value = "paramMap") Map<String, Object> paramMap);
+  int deleteTacticsData(@Param(value = "paramMap") Map<String, Object> paramMap);
 }

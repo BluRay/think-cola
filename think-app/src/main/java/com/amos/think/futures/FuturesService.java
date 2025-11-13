@@ -159,4 +159,28 @@ public class FuturesService implements IFuturesService {
       futuresMapper.deleteTradeAccountData(parmsMap);
       return 0;
     }
+    
+    @Override
+    public Response getRqTacticsData(Map<String, Object> parmsMap) {
+      Map<String, Object> data = new HashMap<String, Object>();
+      List<Map<String, Object>> dateList = new ArrayList<Map<String, Object>>();
+      dateList = futuresMapper.getRqTacticsData(parmsMap);
+      data.put("dateList", dateList);
+      return SingleResponse.of(data);
+    }
+    @Override
+    public int insertTacticsData(Map<String, Object> parmsMap) {
+      futuresMapper.insertTacticsData(parmsMap);
+      return 0;
+    }
+    @Override
+    public int updateTacticsData(Map<String, Object> parmsMap) {
+      futuresMapper.updateTacticsData(parmsMap);
+      return 0;
+    }
+    @Override
+    public int deleteTacticsData(Map<String, Object> parmsMap) {
+      futuresMapper.deleteTacticsData(parmsMap);
+      return 0;
+    }
 }
