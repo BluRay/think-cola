@@ -69,14 +69,14 @@
 		</if>
 	</select>
 	<update id="insertTradeBooksData" parameterType="Map">
-	INSERT INTO rq_books (book_id,book_name,exchange_id,exchange_name,start_time,end_time,status)
+	INSERT INTO rq_books (book_id,book_name,exchange_id,exchange_name,start_time,end_time,price_step,status)
 	VALUES(#{paramMap.book_id},#{paramMap.book_name},#{paramMap.exchange_id},#{paramMap.exchange_name},
-	#{paramMap.start_time},#{paramMap.end_time},#{paramMap.status})
+	#{paramMap.start_time},#{paramMap.end_time},#{paramMap.price_step},#{paramMap.status})
 	</update>
 	<update id="updateTradeBooksData" parameterType="Map">
 	UPDATE rq_books SET book_id = #{paramMap.book_id},book_name = #{paramMap.book_name},
 	exchange_id = #{paramMap.exchange_id},exchange_name = #{paramMap.exchange_name},
-	start_time = #{paramMap.start_time},end_time = #{paramMap.end_time},status = #{paramMap.status}
+	start_time = #{paramMap.start_time},end_time = #{paramMap.end_time},price_step = #{paramMap.price_step},status = #{paramMap.status}
 	WHERE id = #{paramMap.id}
 	</update>
 	<update id="deleteTradeBooksData" parameterType="Map">
