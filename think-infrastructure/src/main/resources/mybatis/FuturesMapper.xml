@@ -98,13 +98,16 @@
 	</select>
 	<update id="insertTacticsData" parameterType="Map">
 	INSERT INTO rq_tactics (tactics_code,tactics_name,tactics_type,tactics_bookid,tactics_status,
+	tactics_account,tactics_company,
 	tactics_manager,tactics_memo,tactics_rick) VALUES (
 	#{paramMap.tactics_code},#{paramMap.tactics_name},#{paramMap.tactics_type},#{paramMap.tactics_bookid},#{paramMap.tactics_status},
+	#{paramMap.tactics_account},#{paramMap.tactics_company},
 	#{paramMap.tactics_manager},#{paramMap.tactics_memo},#{paramMap.tactics_rick})
 	</update>
 	<update id="updateTacticsData" parameterType="Map">
 	UPDATE rq_tactics SET tactics_code = #{paramMap.tactics_code},tactics_name = #{paramMap.tactics_name},tactics_type = #{paramMap.tactics_type},
 	tactics_bookid = #{paramMap.tactics_bookid},tactics_status = #{paramMap.tactics_status},
+	tactics_account = #{paramMap.tactics_account},tactics_company = #{paramMap.tactics_company},
 	tactics_manager = #{paramMap.tactics_manager},tactics_memo = #{paramMap.tactics_memo},tactics_rick = #{paramMap.tactics_rick}
 	WHERE id = #{paramMap.id}
 	</update>
