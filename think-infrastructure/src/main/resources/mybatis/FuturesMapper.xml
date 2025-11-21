@@ -114,4 +114,14 @@
 	<update id="deleteTacticsData" parameterType="Map">
 	DELETE FROM rq_tactics WHERE id = #{paramMap.id}
 	</update>
+
+	<select id="getFollowUserData" parameterType="Map" resultType="Map">
+	SELECT * FROM follow_user
+	</select>
+	<update id="insertFollowUserData" parameterType="Map">
+	</update>
+	<update id="updateFollowUserData" parameterType="Map">
+	</update>
+	<update id="deleteFollowUserData" parameterType="Map">
+	</update>
 </mapper>

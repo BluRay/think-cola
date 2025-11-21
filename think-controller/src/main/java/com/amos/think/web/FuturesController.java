@@ -155,4 +155,41 @@ public class FuturesController {
     data.put("type", "success");
     return SingleResponse.of(data);
   }
+
+  @PostMapping(value = "/getFollowUserData")
+  public Response getFollowUserData(@RequestBody(required = false) Map<String, Object> parmsMap) {
+    Map<String, Object> data = new HashMap<>();
+    data.put("code", 0);
+    data.put("result", futuresService.getFollowUserData(parmsMap));
+    data.put("message", "查询成功");
+    data.put("type", "success");
+    return SingleResponse.of(data);
+  }
+  @PostMapping(value = "/insertFollowUserData")
+  public Response insertFollowUserData(@RequestBody(required = false) Map<String, Object> parmsMap) {
+    Map<String, Object> data = new HashMap<>();
+    data.put("code", 0);
+    data.put("result", futuresService.insertFollowUserData(parmsMap));
+    data.put("message", "操作成功");
+    data.put("type", "success");
+    return SingleResponse.of(data);
+  }
+  @PostMapping(value = "/updateFollowUserData")
+  public Response updateFollowUserData(@RequestBody(required = false) Map<String, Object> parmsMap) {
+    Map<String, Object> data = new HashMap<>();
+    data.put("code", 0);
+    data.put("result", futuresService.updateFollowUserData(parmsMap));
+    data.put("message", "操作成功");
+    data.put("type", "success");
+    return SingleResponse.of(data);
+  }
+  @PostMapping(value = "/deleteFollowUserData")
+  public Response deleteFollowUserData(@RequestBody(required = false) Map<String, Object> parmsMap) {
+    Map<String, Object> data = new HashMap<>();
+    data.put("code", 0);
+    data.put("result", futuresService.deleteFollowUserData(parmsMap));
+    data.put("message", "操作成功");
+    data.put("type", "success");
+    return SingleResponse.of(data);
+  }
 }

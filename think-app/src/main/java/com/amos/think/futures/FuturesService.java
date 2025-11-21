@@ -183,4 +183,28 @@ public class FuturesService implements IFuturesService {
       futuresMapper.deleteTacticsData(parmsMap);
       return 0;
     }
+
+    @Override
+    public Response getFollowUserData(Map<String, Object> parmsMap){
+      Map<String, Object> data = new HashMap<String, Object>();
+      List<Map<String, Object>> dateList = new ArrayList<Map<String, Object>>();
+      dateList = futuresMapper.getFollowUserData(parmsMap);
+      data.put("dateList", dateList);
+      return SingleResponse.of(data);
+    }
+    @Override
+    public int insertFollowUserData(Map<String, Object> parmsMap){
+      futuresMapper.insertFollowUserData(parmsMap);
+      return 0;
+    }
+    @Override
+    public int updateFollowUserData(Map<String, Object> parmsMap){
+      futuresMapper.updateFollowUserData(parmsMap);
+      return 0;
+    }
+    @Override
+    public int deleteFollowUserData(Map<String, Object> parmsMap){
+      futuresMapper.deleteFollowUserData(parmsMap);
+      return 0;
+    }
 }
