@@ -119,9 +119,23 @@
 	SELECT * FROM follow_user
 	</select>
 	<update id="insertFollowUserData" parameterType="Map">
+	INSERT INTO follow_user (username,password,display_name,phone_number,address,
+	trade_account,trade_company,
+	follow_tactics_1,follow_tactics_2,follow_tactics_3,follow_tactics_4,follow_tactics_5,
+	status,memo) VALUES (
+	#{username},#{password},#{display_name},#{phone_number},#{address},
+	#{trade_account},#{trade_company},
+	#{follow_tactics_1},#{follow_tactics_4},#{follow_tactics_3},#{follow_tactics_4},#{follow_tactics_5},
+	#{status},#{memo})
 	</update>
 	<update id="updateFollowUserData" parameterType="Map">
+	UPDATE follow_user SET username = #{username},password = #{password},display_name = #{display_name},phone_number = #{phone_number},address = #{address},
+	trade_account = #{trade_account},trade_company = #{trade_company},
+	follow_tactics_1 = #{follow_tactics_1},follow_tactics_2 = #{follow_tactics_2},follow_tactics_3 = #{follow_tactics_3},follow_tactics_4 = #{follow_tactics_4},follow_tactics_5 = #{follow_tactics_5},
+	status = #{status},memo = #{memo} 
+	WHERE id = #{id}
 	</update>
 	<update id="deleteFollowUserData" parameterType="Map">
+	DELETE FROM follow_user WHERE id = #{id}
 	</update>
 </mapper>
