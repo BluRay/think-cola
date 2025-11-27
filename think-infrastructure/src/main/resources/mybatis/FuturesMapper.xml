@@ -123,19 +123,19 @@
 	trade_account,trade_company,
 	follow_tactics_1,follow_tactics_2,follow_tactics_3,follow_tactics_4,follow_tactics_5,
 	status,memo) VALUES (
-	#{username},#{password},#{display_name},#{phone_number},#{address},
-	#{trade_account},#{trade_company},
-	#{follow_tactics_1},#{follow_tactics_4},#{follow_tactics_3},#{follow_tactics_4},#{follow_tactics_5},
-	#{status},#{memo})
+	#{paramMap.username},#{paramMap.password},#{paramMap.display_name},#{paramMap.phone_number},#{paramMap.address},
+	#{paramMap.trade_account},#{paramMap.trade_company},
+	#{paramMap.follow_tactics_1},#{paramMap.follow_tactics_4},#{paramMap.follow_tactics_3},#{paramMap.follow_tactics_4},#{paramMap.follow_tactics_5},
+	#{paramMap.status},#{paramMap.memo})
 	</update>
 	<update id="updateFollowUserData" parameterType="Map">
-	UPDATE follow_user SET username = #{username},password = #{password},display_name = #{display_name},phone_number = #{phone_number},address = #{address},
-	trade_account = #{trade_account},trade_company = #{trade_company},
-	follow_tactics_1 = #{follow_tactics_1},follow_tactics_2 = #{follow_tactics_2},follow_tactics_3 = #{follow_tactics_3},follow_tactics_4 = #{follow_tactics_4},follow_tactics_5 = #{follow_tactics_5},
-	status = #{status},memo = #{memo} 
-	WHERE id = #{id}
+	UPDATE follow_user SET username = #{paramMap.username},password = #{paramMap.password},display_name = #{paramMap.display_name},phone_number = #{paramMap.phone_number},address = #{paramMap.address},
+	trade_account = #{paramMap.trade_account},trade_company = #{paramMap.trade_company},
+	follow_tactics_1 = #{paramMap.follow_tactics_1},follow_tactics_2 = #{paramMap.follow_tactics_2},follow_tactics_3 = #{paramMap.follow_tactics_3},follow_tactics_4 = #{paramMap.follow_tactics_4},follow_tactics_5 = #{paramMap.follow_tactics_5},
+	status = #{paramMap.status},memo = #{paramMap.memo} 
+	WHERE id = #{paramMap.id}
 	</update>
 	<update id="deleteFollowUserData" parameterType="Map">
-	DELETE FROM follow_user WHERE id = #{id}
+	DELETE FROM follow_user WHERE id = #{paramMap.id}
 	</update>
 </mapper>
