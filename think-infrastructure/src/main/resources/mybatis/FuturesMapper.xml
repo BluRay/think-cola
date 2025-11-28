@@ -84,7 +84,7 @@
 	</update>
 
   <select id="getRqTradeAccountData" parameterType="Map" resultType="Map">
-  SELECT * FROM rq_account WHERE status = '0' 
+  SELECT * FROM rq_account WHERE 1=1 
   	<if test="paramMap.account_id != null and paramMap.account_id != ''">
 			AND account_id= #{paramMap.account_id}
 		</if>
@@ -92,6 +92,20 @@
 			AND futures_company = #{paramMap.futures_company}
 		</if>
 	</select>
+	<update id="insertTradeAccountData" parameterType="Map">
+	INSERT INTO rq_account (account_id,account_name,account_password,futures_company,account_type,account_manager,status,memo) 
+	VALUES (#{paramMap.account_id},#{paramMap.account_name},#{paramMap.account_password},#{paramMap.futures_company},
+	#{paramMap.account_type},#{paramMap.account_manager},#{paramMap.status},#{paramMap.memo})
+	</update>
+	<update id="updateTradeAccountData" parameterType="Map">
+	UPDATE rq_account SET account_id = #{paramMap.account_id},account_name = #{paramMap.account_name},account_password = #{paramMap.account_password},
+	futures_company=#{paramMap.futures_company},account_type=#{paramMap.account_type},account_manager=#{paramMap.account_manager},
+	status=#{paramMap.status},memo=#{paramMap.memo} 
+	WHERE id = #{paramMap.id}
+	</update>
+	<update id="deleteTradeAccountData" parameterType="Map">
+		DELETE FROM rq_account WHERE id = #{paramMap.id}
+	</update>
 	
 	<select id="getRqTacticsData" parameterType="Map" resultType="Map">
 	SELECT * FROM rq_tactics
