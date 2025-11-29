@@ -147,7 +147,43 @@
 	trade_account = #{paramMap.trade_account},trade_company = #{paramMap.trade_company},
 	follow_tactics_1 = #{paramMap.follow_tactics_1},follow_tactics_2 = #{paramMap.follow_tactics_2},follow_tactics_3 = #{paramMap.follow_tactics_3},follow_tactics_4 = #{paramMap.follow_tactics_4},follow_tactics_5 = #{paramMap.follow_tactics_5},
 	status = #{paramMap.status},memo = #{paramMap.memo} 
-	WHERE id = #{paramMap.id}
+	WHERE id = #{paramMap.id};
+	DELETE FROM rq_tactics_follow_config WHERE f_user_id = #{paramMap.id};
+	<if test="paramMap.follow_tactics_1 != null and paramMap.follow_tactics_1 != ''">
+	INSERT INTO rq_tactics_follow_config (f_user_id,f_user_name,f_status,f_tactics_id,f_tactics_confirm,
+	f_tactics_way,f_tactics_multiplier,f_tactics_allow_books,f_tactics_refuse_books,f_tactics_status,
+	f_start_date,f_end_date,f_memo) VALUES (#{paramMap.id},#{paramMap.username},'正常',#{paramMap.follow_tactics_1},'',
+	'正向','100','','','正常',
+	'','','');
+	</if>
+	<if test="paramMap.follow_tactics_2 != null and paramMap.follow_tactics_2 != ''">
+	INSERT INTO rq_tactics_follow_config (f_user_id,f_user_name,f_status,f_tactics_id,f_tactics_confirm,
+	f_tactics_way,f_tactics_multiplier,f_tactics_allow_books,f_tactics_refuse_books,f_tactics_status,
+	f_start_date,f_end_date,f_memo) VALUES (#{paramMap.id},#{paramMap.username},'正常',#{paramMap.follow_tactics_2},'',
+	'正向','100','','','正常',
+	'','','');
+	</if>
+	<if test="paramMap.follow_tactics_3 != null and paramMap.follow_tactics_3 != ''">
+	INSERT INTO rq_tactics_follow_config (f_user_id,f_user_name,f_status,f_tactics_id,f_tactics_confirm,
+	f_tactics_way,f_tactics_multiplier,f_tactics_allow_books,f_tactics_refuse_books,f_tactics_status,
+	f_start_date,f_end_date,f_memo) VALUES (#{paramMap.id},#{paramMap.username},'正常',#{paramMap.follow_tactics_3},'',
+	'正向','100','','','正常',
+	'','','');
+	</if>
+	<if test="paramMap.follow_tactics_4 != null and paramMap.follow_tactics_4 != ''">
+	INSERT INTO rq_tactics_follow_config (f_user_id,f_user_name,f_status,f_tactics_id,f_tactics_confirm,
+	f_tactics_way,f_tactics_multiplier,f_tactics_allow_books,f_tactics_refuse_books,f_tactics_status,
+	f_start_date,f_end_date,f_memo) VALUES (#{paramMap.id},#{paramMap.username},'正常',#{paramMap.follow_tactics_4},'',
+	'正向','100','','','正常',
+	'','','');
+	</if>
+	<if test="paramMap.follow_tactics_5 != null and paramMap.follow_tactics_5 != ''">
+	INSERT INTO rq_tactics_follow_config (f_user_id,f_user_name,f_status,f_tactics_id,f_tactics_confirm,
+	f_tactics_way,f_tactics_multiplier,f_tactics_allow_books,f_tactics_refuse_books,f_tactics_status,
+	f_start_date,f_end_date,f_memo) VALUES (#{paramMap.id},#{paramMap.username},'正常',#{paramMap.follow_tactics_5},'',
+	'正向','100','','','正常',
+	'','','');
+	</if>
 	</update>
 	<update id="deleteFollowUserData" parameterType="Map">
 	DELETE FROM follow_user WHERE id = #{paramMap.id}
