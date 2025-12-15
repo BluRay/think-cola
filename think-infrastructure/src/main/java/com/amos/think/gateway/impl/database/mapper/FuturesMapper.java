@@ -29,6 +29,7 @@ public interface FuturesMapper {
   int updateTacticsData(@Param(value = "paramMap") Map<String, Object> paramMap);
   int deleteTacticsData(@Param(value = "paramMap") Map<String, Object> paramMap);
   // 跟单帐号配置
+  List<Map<String, Object>> getFollowUserTradeData(@Param(value = "paramMap") Map<String, Object> paramMap);
   List<Map<String, Object>> getFollowUserData(@Param(value = "paramMap") Map<String, Object> paramMap);
   int insertFollowUserData(@Param(value = "paramMap") Map<String, Object> paramMap);
   int updateFollowUserData(@Param(value = "paramMap") Map<String, Object> paramMap);

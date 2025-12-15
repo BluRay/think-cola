@@ -129,6 +129,11 @@
 	DELETE FROM rq_tactics WHERE id = #{paramMap.id}
 	</update>
 
+	<select id="getFollowUserTradeData" parameterType="Map" resultType="Map">
+	select u.id, u.username,u.display_name, u.trade_account,u.trade_company, u.status,
+	t.tactics_code, t.tactics_name, t.tactics_bookid, t.tactics_account
+	from follow_user u left join rq_tactics t on t.id = u.follow_tactics_1
+	</select>	
 	<select id="getFollowUserData" parameterType="Map" resultType="Map">
 	SELECT * FROM follow_user
 	</select>
