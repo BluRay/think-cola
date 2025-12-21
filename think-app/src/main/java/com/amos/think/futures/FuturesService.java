@@ -185,6 +185,15 @@ public class FuturesService implements IFuturesService {
     }
 
     @Override
+    public Response getFollowUserTradeData(Map<String, Object> parmsMap){
+      Map<String, Object> data = new HashMap<String, Object>();
+      List<Map<String, Object>> dateList = new ArrayList<Map<String, Object>>();
+      dateList = futuresMapper.getFollowUserTradeData(parmsMap);
+      data.put("dateList", dateList);
+      return SingleResponse.of(data);
+    }
+
+    @Override
     public Response getFollowUserData(Map<String, Object> parmsMap){
       Map<String, Object> data = new HashMap<String, Object>();
       List<Map<String, Object>> dateList = new ArrayList<Map<String, Object>>();

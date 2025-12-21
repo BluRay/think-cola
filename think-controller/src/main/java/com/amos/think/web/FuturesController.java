@@ -156,6 +156,16 @@ public class FuturesController {
     return SingleResponse.of(data);
   }
 
+  @PostMapping(value = "/getFollowUserTradeData")
+  public Response getFollowUserTradeData(@RequestBody(required = false) Map<String, Object> parmsMap) {
+    Map<String, Object> data = new HashMap<>();
+    data.put("code", 0);
+    data.put("result", futuresService.getFollowUserTradeData(parmsMap));
+    data.put("message", "查询成功");
+    data.put("type", "success");
+    return SingleResponse.of(data);
+  }
+
   @PostMapping(value = "/getFollowUserData")
   public Response getFollowUserData(@RequestBody(required = false) Map<String, Object> parmsMap) {
     Map<String, Object> data = new HashMap<>();
