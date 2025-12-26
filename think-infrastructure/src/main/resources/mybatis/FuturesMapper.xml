@@ -193,4 +193,18 @@
 	<update id="deleteFollowUserData" parameterType="Map">
 	DELETE FROM follow_user WHERE id = #{paramMap.id}
 	</update>
+	<select id="getTradeHisData" parameterType="Map" resultType="Map">
+	SELECT h.id, h.account, h.target, h.tactics, h.trade_time, h.trade_type, h.price, h.price_type, h.filled_quantity, h.result,
+	s.tactics_name, s.tactics_type, s.tactics_bookid,s.tactics_account,s.tactics_company
+	FROM TRADE_HIS h 
+	LEFT JOIN RQ_TACTICS s ON s.id = REPLACE(h.tactics, 'f_', '')
+	WHERE 1=1
+	<if test="paramMap.trade_date != null and paramMap.trade_date != ''">
+	AND h.trade_time LIKE concat('%',#{paramMap.trade_date},'%')
+	</if>
+	<if test="paramMap.keyword != null and paramMap.keyword != ''">
+	AND account LIKE concat('%',#{paramMap.account},'%') 
+	</if>
+	ORDER BY id DESC 
+	</select>
 </mapper>
