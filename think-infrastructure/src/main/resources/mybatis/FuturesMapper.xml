@@ -206,5 +206,17 @@
 	AND account LIKE concat('%',#{paramMap.account},'%') 
 	</if>
 	ORDER BY id DESC 
+	LIMIT ${paramMap.start}, ${paramMap.length}
+	</select>
+	<select id="getTradeHisDataTotalCount" parameterType="Map" resultType="int">
+	SELECT COUNT(*)
+	FROM TRADE_HIS h
+	WHERE 1=1
+	<if test="paramMap.trade_date != null and paramMap.trade_date != ''">
+	AND h.trade_time LIKE concat('%',#{paramMap.trade_date},'%')
+	</if>
+	<if test="paramMap.keyword != null and paramMap.keyword != ''">
+	AND account LIKE concat('%',#{paramMap.account},'%') 
+	</if>
 	</select>
 </mapper>

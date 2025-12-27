@@ -31,4 +31,6 @@ public interface IFuturesService {
     int insertFollowUserData(Map<String, Object> parmsMap);
     int updateFollowUserData(Map<String, Object> parmsMap);
     int deleteFollowUserData(Map<String, Object> parmsMap);
+    
+    Response getTradeHisData(Map<String, Object> parmsMap);
 }

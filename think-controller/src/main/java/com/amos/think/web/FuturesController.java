@@ -202,4 +202,14 @@ public class FuturesController {
     data.put("type", "success");
     return SingleResponse.of(data);
   }
+
+  @PostMapping(value = "/getTradeHisData")
+  public Response getTradeHisData(@RequestBody(required = false) Map<String, Object> parmsMap) {
+    Map<String, Object> data = new HashMap<>();
+    data.put("code", 0);
+    data.put("result", futuresService.getTradeHisData(parmsMap));
+    data.put("message", "查询成功");
+    data.put("type", "success");
+    return SingleResponse.of(data);
+  }
 }

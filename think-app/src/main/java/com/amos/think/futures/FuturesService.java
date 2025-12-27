@@ -216,4 +216,24 @@ public class FuturesService implements IFuturesService {
       futuresMapper.deleteFollowUserData(parmsMap);
       return 0;
     }
+
+    @Override
+    public Response getTradeHisData(Map<String, Object> parmsMap){
+        String pageNo = (parmsMap.get("currentPage") != null && !parmsMap.get("currentPage").equals(""))
+          ? parmsMap.get("currentPage").toString()
+          : "1";
+        String pageSize = (parmsMap.get("pageSize") != null && !parmsMap.get("pageSize").equals(""))
+          ? parmsMap.get("pageSize").toString()
+          : "100";
+        int start = 0;
+        int length = 100;
+        if (parmsMap.get("pageSize") != null && !parmsMap.get("pageSize").equals("")) {
+          start = (Integer.valueOf(pageNo) - 1) * Integer.valueOf(pageSize);
+          length = Integer.valueOf(pageSize);
+        }
+        parmsMap.put("start", start);
+        parmsMap.put("length", length);
+        int totalCount = futuresMapper.getTradeHisDataTotalCount(parmsMap);
+        return PageResponse.of(futuresMapper.getTradeHisData(parmsMap), totalCount, length, Integer.valueOf(pageNo));
+    }
 }
