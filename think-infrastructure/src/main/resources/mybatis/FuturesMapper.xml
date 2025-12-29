@@ -203,7 +203,7 @@
 	AND h.trade_time LIKE concat('%',#{paramMap.trade_date},'%')
 	</if>
 	<if test="paramMap.keyword != null and paramMap.keyword != ''">
-	AND account LIKE concat('%',#{paramMap.account},'%') 
+	AND account LIKE concat('%',#{paramMap.keyword},'%') 
 	</if>
 	ORDER BY id DESC 
 	LIMIT ${paramMap.start}, ${paramMap.length}
@@ -216,7 +216,7 @@
 	AND h.trade_time LIKE concat('%',#{paramMap.trade_date},'%')
 	</if>
 	<if test="paramMap.keyword != null and paramMap.keyword != ''">
-	AND account LIKE concat('%',#{paramMap.account},'%') 
+	AND account LIKE concat('%',#{paramMap.keyword},'%') 
 	</if>
 	</select>
 </mapper>
